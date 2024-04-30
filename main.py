@@ -1,8 +1,7 @@
 from typing import Tuple
-from neural import NeuralNet
+from neural import *
 from sklearn.model_selection import train_test_split
 import pandas as pd
-import 
 
 def parse_line(line: str) -> Tuple[List[float], List[float]]:
     """Splits line of CSV into inputs and output (transormfing output as appropriate)
