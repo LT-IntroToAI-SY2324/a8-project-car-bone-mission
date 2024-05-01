@@ -2,6 +2,7 @@ from typing import Tuple
 from neural import *
 from sklearn.model_selection import train_test_split
 import pandas as pd
+import csv
 
 def parse_line(line: str) -> Tuple[List[float], List[float]]:
     """Splits line of CSV into inputs and output (transormfing output as appropriate)
@@ -67,6 +68,10 @@ def remove_specific_row_from_csv(file, column_name, *args):
     except Exception  as e:
         raise Exception("Error message....")
 
-remove_specific_row_from_csv(emissions.csv, "year", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", 
+# remove years before 2000
+remove_specific_row_from_csv('emissions.csv', "year", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", 
                              "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", 
                              "1996", "1997", "1998", "1999")
+
+# remove none natural gas or diesel
+remove_specific_row_from_csv('emissions.csv', 'fuel-name', 'All Fuels')
