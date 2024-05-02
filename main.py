@@ -1,9 +1,6 @@
 from typing import Tuple
 from neural import *
 from sklearn.model_selection import train_test_split
-import pandas as pd
-import csv
-import numpy
 
 def parse_line(line: str) -> Tuple[List[float], List[float]]:
     """Splits line of CSV into inputs and output (transormfing output as appropriate)
@@ -46,3 +43,9 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
         for j in range(len(data[i][0])):
             data[i][0][j] = (data[i][0][j] - leasts[j]) / (mosts[j] - leasts[j])
     return data
+
+with open("emmisions.txt", "r") as f:
+    training_data = [parse_line(line) for line in f.readlines() if len(line) > 4]
+
+td = normalize(training_data)
+print(td)
