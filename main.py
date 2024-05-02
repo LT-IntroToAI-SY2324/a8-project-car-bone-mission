@@ -76,7 +76,7 @@ remove_specific_row_from_csv('emissions.csv', "year", "1970", "1971", "1972", "1
 # remove none natural gas or diesel
 remove_specific_row_from_csv('emissions.csv', 'fuel-name', 'All Fuels')
 
-# remmove none industrial sectors
+# remmove none industrial or commercial sectors
 remove_specific_row_from_csv('emissions.csv', 'sector-name', 'Total carbon dioxide emissions from all sectors', 'Residential carbon dioxide emissions'
                              , 'Transportation carbon dioxide emissions', 'Electric Power carbon dioxide emissions', 
                             )
