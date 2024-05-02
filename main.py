@@ -3,6 +3,7 @@ from neural import *
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import csv
+import numpy
 
 def parse_line(line: str) -> Tuple[List[float], List[float]]:
     """Splits line of CSV into inputs and output (transormfing output as appropriate)
@@ -48,30 +49,3 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
 
 #Remove uncecesary data
 
-def remove_specific_row_from_csv(file, column_name, *args):
-    '''
-    :param file: file to remove the rows from
-    :param column_name: The column that determines which row will be 
-           deleted (e.g. if Column == Name and row-*args
-           contains "Gavri", All rows that contain this word will be deleted)
-    :param args: Strings from the rows according to the conditions with 
-                 the column
-    '''
-    row_to_remove = []
-    for row_name in args:
-        row_to_remove.append(row_name)
-    try:
-        df = pd.read_csv(file)
-        for row in row_to_remove:
-            df = df[eval("df.{}".format(column_name)) != row]
-        df.to_csv(file, index=False)
-    except Exception  as e:
-        raise Exception("Error message....")
-
-# remove years before 2000
-remove_specific_row_from_csv('emissions.csv', "year", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", 
-                             "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", 
-                             "1996", "1997", "1998", "1999")
-
-# remove none natural gas or diesel
-remove_specific_row_from_csv('emissions.csv', 'fuel-name', 'All Fuels')
