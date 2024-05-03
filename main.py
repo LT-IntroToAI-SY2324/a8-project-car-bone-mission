@@ -44,7 +44,7 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
             data[i][0][j] = (data[i][0][j] - leasts[j]) / (mosts[j] - leasts[j])
     return data
 
-with open("emmisions.txt", "r") as f:
+with open("emissions.txt", "r") as f:
     training_data = [parse_line(line) for line in f.readlines() if len(line) > 4]
 
 td = normalize(training_data)
