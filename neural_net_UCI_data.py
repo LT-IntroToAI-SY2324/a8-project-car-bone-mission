@@ -1,6 +1,7 @@
 from typing import Tuple
 from neural import *
 from sklearn.model_selection import train_test_split
+import pandas as pd
 
 def parse_line(line: str) -> Tuple[List[float], List[float]]:
     """Splits line of CSV into inputs and output (transormfing output as appropriate)
@@ -44,6 +45,9 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
             data[i][0][j] = (data[i][0][j] - leasts[j]) / (mosts[j] - leasts[j])
     return data
 
+data = pd.read_csv('emissions.txt')
+data.drop('year', inplace=True, axis=1)
+data.drop('state-name', inplace=True, axis=1)
 
 with open("wine_data.txt", "r") as f:
     training_data = [parse_line(line) for line in f.readlines() if len(line) > 4]
